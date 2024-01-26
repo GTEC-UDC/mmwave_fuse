@@ -1,0 +1,17 @@
+<launch>
+
+    <!-- Topic names-->
+    <arg default="/gtec/mmwave/all/target" name="multi_positions_topic"></arg>
+    <arg default="/gtec/multipositions/area" name="publish_topic"></arg>
+    <arg default="polygon.txt" name="polygons_file"></arg>
+
+
+    <!-- Nodes -->
+
+    <node name="MultiPositionsAreaFilter" output="screen" pkg="gtec_mmwave_fuse" type="multi_positions_area_filter.py">
+        <param name="multi_positions_topic" value="$(arg multi_positions_topic)"></param>
+        <param name="publish_topic" value="$(arg publish_topic)"></param>
+        <param name="polygons_file" textfile="$(arg polygons_file)"></param>
+    </node>
+
+</launch>

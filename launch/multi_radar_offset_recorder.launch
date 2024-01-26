@@ -1,0 +1,27 @@
+<launch>
+
+
+    <arg default="/home/gtec" name="save_folder"></arg>
+    <arg default="['/gtec/mmwave/aop_0/cartesian/odom', '/gtec/mmwave/isk_0/cartesian/odom', '/gtec/mmwave/isk_1/cartesian/odom']" name="radar_topics"></arg>
+    <arg default="['aop_0', 'isk_0', 'isk_1']" name="radar_ids"></arg>
+
+
+    <arg default="6" name="map_height"></arg>
+    <arg default="12" name="map_width"></arg>
+    <arg default="0.3" name="grid_size"></arg>
+    <arg default="300" name="window_size_in_ms"></arg>
+    <arg default="180" name="record_time_in_s"></arg>
+
+    <node name="MultiRadarOffsetRecorder" output="screen" pkg="gtec_mmwave_fuse" type="multi_radar_offset_recorder.py">
+        <param name="save_folder" value="$(arg save_folder)"></param>
+        <param name="radar_topics" value="$(arg radar_topics)"></param>
+        <param name="radar_ids" value="$(arg radar_ids)"></param>
+
+        <param name="map_height" value="$(arg map_height)"></param>
+        <param name="map_width" value="$(arg map_width)"></param>
+        <param name="grid_size" value="$(arg grid_size)"></param>
+        <param name="window_size_in_ms" value="$(arg window_size_in_ms)"></param>
+        <param name="record_time_in_s" value="$(arg record_time_in_s)"></param>
+    </node>
+
+</launch>

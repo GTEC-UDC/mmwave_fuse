@@ -1,0 +1,12 @@
+<launch>
+
+
+    <arg default="['/gtec/mmwave/aop_0/cartesian/buffer_filter', '/gtec/mmwave/isk_0/cartesian/buffer_filter', '/gtec/mmwave/isk_1/cartesian/buffer_filter']" name="radar_topics"></arg>
+    <arg default="/gtec/mmwave/all/cartesian/corrected" name="output_topic"></arg>
+
+    <node name="MultiRadarToSingleTopic" output="screen" pkg="gtec_mmwave_fuse" type="multi_radar_to_single_topic.py">
+        <param name="radar_topics" value="$(arg radar_topics)"></param>
+        <param name="output_topic" value="$(arg output_topic)"></param>
+    </node>
+    
+</launch>

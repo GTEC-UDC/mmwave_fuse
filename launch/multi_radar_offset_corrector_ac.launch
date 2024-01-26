@@ -1,0 +1,46 @@
+<launch>
+
+
+    <arg default="/home/gtec" name="save_folder"></arg>
+
+
+    <arg default="/gtec/mmwave/all/cartesian/corrected" name="output_all_corrected"></arg>
+
+    <arg default="isk_0" name="radar_id_0"></arg>
+    <arg default="/gtec/mmwave/isk_0/cartesian/odom" name="input_topic_0"></arg>
+    <arg default="/gtec/mmwave/isk_0/cartesian/corrected" name="output_topic_0"></arg>
+
+    <arg default="isk_1" name="radar_id_1"></arg>
+    <arg default="/gtec/mmwave/isk_1/cartesian/odom" name="input_topic_1"></arg>
+    <arg default="/gtec/mmwave/isk_1/cartesian/corrected" name="output_topic_1"></arg>
+
+    <arg default="aop_0" name="radar_id_2"></arg>
+    <arg default="/gtec/mmwave/aop_0/cartesian/odom" name="input_topic_2"></arg>
+    <arg default="/gtec/mmwave/aop_0/cartesian/corrected" name="output_topic_2"></arg>
+
+
+    <node name="MultiRadarOffsetCorrector_ISK0" output="screen" pkg="gtec_mmwave_fuse" type="multi_radar_offset_corrector.py">
+        <param name="save_folder" value="$(arg save_folder)"></param>
+        <param name="input_topic" value="$(arg input_topic_0)"></param>
+        <param name="output_topic" value="$(arg output_topic_0)"></param>
+        <param name="output_all_corrected" value="$(arg output_all_corrected)"></param>
+        <param name="radar_id" value="$(arg radar_id_0)"></param>
+    </node>
+
+    <node name="MultiRadarOffsetCorrector_ISK1" output="screen" pkg="gtec_mmwave_fuse" type="multi_radar_offset_corrector.py">
+        <param name="save_folder" value="$(arg save_folder)"></param>
+        <param name="input_topic" value="$(arg input_topic_1)"></param>
+        <param name="output_topic" value="$(arg output_topic_1)"></param>
+        <param name="output_all_corrected" value="$(arg output_all_corrected)"></param>
+        <param name="radar_id" value="$(arg radar_id_1)"></param>
+    </node>
+
+    <node name="MultiRadarOffsetCorrector_AOP0" output="screen" pkg="gtec_mmwave_fuse" type="multi_radar_offset_corrector.py">
+        <param name="save_folder" value="$(arg save_folder)"></param>
+        <param name="input_topic" value="$(arg input_topic_2)"></param>
+        <param name="output_topic" value="$(arg output_topic_2)"></param>
+        <param name="output_all_corrected" value="$(arg output_all_corrected)"></param>
+        <param name="radar_id" value="$(arg radar_id_2)"></param>
+    </node>
+
+</launch>

@@ -1,0 +1,25 @@
+<launch>
+
+    <!-- Topic names-->
+    <arg default="/gtec/mmwave/cluster/centroids" name="all_targets_topic"></arg>
+    <arg default="/gtec/mmwave/fuse/target" name="publish_target_topic"></arg>
+    <arg default="/gtec/mmwave/fuse/target/pose" name="publish_target_with_covariance_topic"></arg>
+
+    <arg default="100" name="max_targets"></arg>
+    <arg default="1.5" name="max_distance_to_assign_centroid_to_target"></arg>
+    <arg default="300" name="window_time_in_ms"></arg>
+    <arg default="60000" name="remove_inactive_target_time_ms"></arg>
+    <arg default="true" name="use_kf"></arg>
+
+    <node name="TargetFollower" output="screen" pkg="gtec_mmwave_fuse" type="target_follower.py">
+        <param name="all_targets_topic" value="$(arg all_targets_topic)"></param>
+        <param name="publish_target_topic" value="$(arg publish_target_topic)"></param>
+        <param name="publish_target_with_covariance_topic" value="$(arg publish_target_with_covariance_topic)"></param>
+        <param name="max_targets" value="$(arg max_targets)"></param>
+        <param name="max_distance_to_assign_centroid_to_target" value="$(arg max_distance_to_assign_centroid_to_target)"></param>
+        <param name="window_time_in_ms" value="$(arg window_time_in_ms)"></param>
+        <param name="remove_inactive_target_time_ms" value="$(arg remove_inactive_target_time_ms)"></param>
+        <param name="use_kf" value="$(arg use_kf)"></param>
+    </node>
+
+</launch>
